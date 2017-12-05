@@ -1,3 +1,4 @@
+
 {% if todo_list %}
 <ul>
 {% for todo in todo_list %}
@@ -7,3 +8,12 @@
 {% else %}
 <p>No polls are available.</p>
 {% endif %}
+
+<form action="/" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit" />
+</form>
+
+<p>{{ todo_name }}</p>
+<p>{{ expired_date }}</p>
