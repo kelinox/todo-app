@@ -3,8 +3,18 @@
     margin:auto;
 }
 
+h1{
+    width:200px;
+    margin:auto;
+}
+
 #todo_list li{
     list-style-type: none;
-    width:300px;
-    height:30px;
+    background:#EFEFEF;
+    width:500px;
+    height:50px;
+    line-height:50px;
+    text-indent: 20px;
+    border:solid white 2px;
+    border-left:solid 4px #72ca59;
 }

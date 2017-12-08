@@ -3,6 +3,15 @@
 <link rel="stylesheet" type="text/css" href="{% static 'polls/index.css' %}" />
 <script src="{% static 'polls/jquery-3.2.1.min.js' %} "></script>
 <script src="{% static 'polls/index.js' %} "></script>
+<script src="{% static 'polls/jquery.sortable.js' %} "></script>
+
+<h1>Todo list</h1>
+
+<form method="post" id="form">  
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit" id="add" />
+</form>
 
 {% if todo_list %}
 <ul id="todo_list">
@@ -14,10 +23,5 @@
 <p>No polls are available.</p>
 {% endif %}
 
-<form method="post" id="form">  
-    {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="Submit" id="add" />
-</form>
 
 <p>{{ error }}</p>
