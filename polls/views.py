@@ -1,34 +1,34 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
-from datetime import date
 import json
+from django.db import IntegrityError
 
 from .models import Todo
 from .forms import TodoForm
 
 def index(request):
-    todo_list = Todo.objects.order_by('id')
-    error = ""
+    todo_list = Todo.objects.order_by('todo_text')
     if request.method == 'POST':
         form = TodoForm(request.POST)
         todo_name=""
-        todo_id=""
+        todo_id=len(Todo.objects.all())
+        error = ""
         if form.is_valid():
-            expired_date = form.cleaned_data['expired_date']
-            date_today = date.today()
-            if expired_date > date_today:
-                todo_name = form.cleaned_data['todo_name']
-                todo = Todo(todo_text=todo_name,expired_date=expired_date)
+            todo_name = form.cleaned_data['todo_name']
+            day_left = form.cleaned_data['day_left']
+            try:
+                todo = Todo.objects.create(todo_text=todo_name,day_left=day_left)
                 todo.save()
-            else:
-                error = "You can't add a todo with this date"
-        else:
-            error="Form not clean"
+                todo_id += 1
+            except IntegrityError as e:
+                error = "already in the database"
+
 
         return HttpResponse(json.dumps({
                             'todo_name': todo_name,
-                            'todo_id': todo.id,
+                            'todo_id': todo_id,
+                            'error': error,
         }))
     else:
         form = TodoForm()
@@ -36,7 +36,6 @@ def index(request):
     context = {
         'todo_list': todo_list,
         'form': form,
-        'error': error,
     }
     return render(request,'polls/index.html',context)
     

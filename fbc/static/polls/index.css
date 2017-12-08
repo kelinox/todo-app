@@ -10,11 +10,59 @@ h1{
 
 #todo_list li{
     list-style-type: none;
-    background:#EFEFEF;
     width:500px;
     height:50px;
     line-height:50px;
     text-indent: 20px;
-    border:solid white 2px;
     border-left:solid 4px #72ca59;
+    font-size:18px;
+}
+
+.todo_item{
+    width:100%;
+    height:50px;
+    position:relative;
+    background:#EFEFEF;
+    border:solid white 2px;
+}
+
+.todo_item > *{
+    display: block;
+}
+
+.todo_action{
+    width:75px;
+    height:25px;
+    position:absolute;
+    top:50%;
+    left:95%;
+    transform: translate(-80%,-50%);
+}
+
+.todo_action > *{
+    width:25px;
+    height:25px;
+    line-height:25px;
+    text-align: center;
+    color:white;
+    border-radius: 50%;
+    float:left;
+    cursor: pointer;
+}
+
+.validation{
+    margin-right:15px;
+    background: #96E083;
+}
+
+.validation:hover{
+    background: #72ca59;
+}
+
+.delete{
+    background: #FF5A5A;
+}
+
+.delete:hover{
+    background: #F50000;
 }
