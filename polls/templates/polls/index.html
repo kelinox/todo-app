@@ -7,7 +7,7 @@
 {% if todo_list %}
 <ul id="todo_list">
 {% for todo in todo_list %}
-    <li id="/polls/{{ todo.id }}/">{{ todo.todo_text }}</li>
+    <li id="{{ todo.id }}">{{ todo.todo_text }}</li>
 {% endfor %}
 </ul>
 {% else %}

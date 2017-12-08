@@ -8,7 +8,7 @@ from .models import Todo
 from .forms import TodoForm
 
 def index(request):
-    todo_list = Todo.objects.order_by('-expired_date')
+    todo_list = Todo.objects.order_by('-id')
     error = ""
     if request.method == 'POST':
         form = TodoForm(request.POST)
