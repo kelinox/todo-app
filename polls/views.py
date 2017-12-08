@@ -1,16 +1,19 @@
 from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.http import HttpResponse
 from django.template import loader
 from datetime import date
+import json
 
 from .models import Todo
 from .forms import TodoForm
 
 def index(request):
-    todo_list = Todo.objects.order_by('-expired_date')[:5]
+    todo_list = Todo.objects.order_by('-expired_date')
     error = ""
     if request.method == 'POST':
         form = TodoForm(request.POST)
+        todo_name=""
+        todo_id=""
         if form.is_valid():
             expired_date = form.cleaned_data['expired_date']
             date_today = date.today()
@@ -22,6 +25,11 @@ def index(request):
                 error = "You can't add a todo with this date"
         else:
             error="Form not clean"
+
+        return HttpResponse(json.dumps({
+                            'todo_name': todo_name,
+                            'todo_id': todo.id,
+        }))
     else:
         form = TodoForm()
 

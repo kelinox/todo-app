@@ -1,4 +1,10 @@
-a{
-    color:green;
-    text-decoration: none;
+#todo_list{
+    width:600px;
+    margin:auto;
+}
+
+#todo_list li{
+    list-style-type: none;
+    width:300px;
+    height:30px;
 }

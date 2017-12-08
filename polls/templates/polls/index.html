@@ -1,21 +1,23 @@
 {% load static %}
 
 <link rel="stylesheet" type="text/css" href="{% static 'polls/index.css' %}" />
+<script src="{% static 'polls/jquery-3.2.1.min.js' %} "></script>
+<script src="{% static 'polls/index.js' %} "></script>
 
 {% if todo_list %}
-<ul>
+<ul id="todo_list">
 {% for todo in todo_list %}
-    <li><a href="/polls/{{ todo.id }}/">{{ todo.todo_text }}</a></li>
+    <li id="/polls/{{ todo.id }}/">{{ todo.todo_text }}</li>
 {% endfor %}
 </ul>
 {% else %}
 <p>No polls are available.</p>
 {% endif %}
 
-<form action="/" method="post">
+<form method="post" id="form">  
     {% csrf_token %}
     {{ form }}
-    <input type="submit" value="Submit" />
+    <input type="submit" value="Submit" id="add" />
 </form>
 
 <p>{{ error }}</p>
