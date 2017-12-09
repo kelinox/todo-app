@@ -5,8 +5,14 @@ $(document).ready(function(){
             data = JSON.parse(data);
             console.log(data.error);
             if(data.error.length < 1){
-                $('#todo_list').append('<li id="'+ data.todo_id+'">'+ data.todo_name+'</li>');
-            }
+                $('#todo_list').append(                        
+                '<div class="todo_item">'+
+                    '<li>'+ data.todo_name+'</li>'+
+                    '<div class="todo_action">'+
+                       '<span class="validation">&#x2714;</span>'+
+                       '<span class="delete">&#10006;</span>'+
+                   ' </div>'+
+                '</div>');}
         });
         e.preventDefault();
     });
