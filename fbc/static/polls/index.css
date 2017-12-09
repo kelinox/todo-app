@@ -1,11 +1,36 @@
-#todo_list{
+*{
+    margin:0;
+    padding:0;
+}
+
+body{
+    width:100%;
+    height:100%;
+    background:#EFEFEF;
+}
+
+.content{
     width:600px;
     margin:auto;
+    background:white;
+    margin-top:50px;
+    padding:20px;
+    border-radius:10px;
+
+}
+
+#todo_list{
+    width:100%;
+    
 }
 
 h1{
     width:200px;
     margin:auto;
+    font-size:42px;
+    text-align: center;
+    margin-bottom:20px;
+    color:#FFC096;
 }
 
 #todo_list li{
@@ -66,3 +91,39 @@ h1{
 .delete:hover{
     background: #F50000;
 }
+
+#form{
+    width:400px;
+    margin:auto;
+}
+
+ #form > input{
+     display:block;
+     width:100%;
+     margin:auto;
+     padding:5px;
+     margin-bottom:10px;
+     padding:10px;
+ }
+
+
+ #form > input[type=submit]{
+     width:125px;
+     height:35px;
+     line-height: 16px;
+     font-size:18px;
+ }
+
+ #add{
+     border-radius:5px;
+     background: #72ca59;
+     border:none;
+     color:white;     
+     cursor:pointer;
+     padding:0;
+ }
+
+ #add:hover{
+     background: #50AE37;
+ }
+

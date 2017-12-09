@@ -38,6 +38,15 @@ def index(request):
         'form': form,
     }
     return render(request,'polls/index.html',context)
+
+def delete(request):
+    if request.method == 'POST':
+        print('done')
+    else:
+        print('nop')
+    return HttpResponse(json.dumps({
+                        'remove': 'Well removed'
+                    }))
     
 
 # Create your views here.
