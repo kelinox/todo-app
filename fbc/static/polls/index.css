@@ -21,7 +21,8 @@ body{
 
 #todo_list{
     width:100%;
-    
+    height:auto;
+    min-height:50px;
 }
 
 h1{
@@ -67,12 +68,13 @@ h1{
 .todo_action > *{
     width:25px;
     height:25px;
-    line-height:25px;
+    line-height:27px;
     text-align: center;
     color:white;
     border-radius: 50%;
     float:left;
     cursor: pointer;
+    border:none;
 }
 
 .validation{

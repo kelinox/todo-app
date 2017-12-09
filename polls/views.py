@@ -3,9 +3,12 @@ from django.http import HttpResponse
 from django.template import loader
 import json
 from django.db import IntegrityError
+from django.views.decorators.csrf import csrf_protect
 
 from .models import Todo
 from .forms import TodoForm
+
+from django.views.decorators.csrf import csrf_exempt
 
 def index(request):
     todo_list = Todo.objects.order_by('todo_text')
@@ -20,14 +23,12 @@ def index(request):
             try:
                 todo = Todo.objects.create(todo_text=todo_name,day_left=day_left)
                 todo.save()
-                todo_id += 1
             except IntegrityError as e:
                 error = "already in the database"
 
 
         return HttpResponse(json.dumps({
                             'todo_name': todo_name,
-                            'todo_id': todo_id,
                             'error': error,
         }))
     else:
@@ -40,12 +41,13 @@ def index(request):
     return render(request,'polls/index.html',context)
 
 def delete(request):
+    remove = ""
     if request.method == 'POST':
-        print('done')
-    else:
-        print('nop')
+        remove="deleted"
+        t = Todo.objects.get(todo_text=request.POST['text'])
+        t.delete()
     return HttpResponse(json.dumps({
-                        'remove': 'Well removed'
+                        'remove': remove
                     }))
     
 
