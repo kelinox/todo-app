@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    $('#todo_list').sortable();
+
     $('#form').submit(function(e){
         $.post('/', $(this).serialize(), function(data){ 
             data = JSON.parse(data);
@@ -19,6 +19,7 @@ $(document).ready(function(){
                     '</form>'+
                 '</div>');
                 var elem = $('.todo_action').last().append(inputElem);
+                $('#todo_list').sortable();
             }
         });
         e.preventDefault();

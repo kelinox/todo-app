@@ -34,7 +34,7 @@ h1{
     color:#FFC096;
 }
 
-#todo_list li{
+#todo_list li {
     list-style-type: none;
     width:500px;
     height:50px;
@@ -50,6 +50,18 @@ h1{
     position:relative;
     background:#EFEFEF;
     border:solid white 2px;
+}
+
+
+.day_left{
+    width:50px;
+    height:12px;
+    font-size:10px;
+    color:white;
+    background:red;
+    border-radius:5px;
+    margin-left:8px;
+    padding:2px;
 }
 
 .todo_item > *{
