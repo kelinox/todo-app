@@ -14,8 +14,8 @@
         {{ form }}
         <input type="submit" value="Submit" id="add" />
     </form>
-    {% if todo_list %}
     <ul id="todo_list">
+    {% if todo_list %}
     {% for todo in todo_list %}
         <div class="todo_item">
             <li class="todo_text">{{ todo.todo_text }}</li>
@@ -27,8 +27,8 @@
             </form>
         </div>
     {% endfor %}
-    </ul>
     {% endif %}
+    </ul>
 </div>
 
 
