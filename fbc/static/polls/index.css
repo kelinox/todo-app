@@ -40,8 +40,15 @@ h1{
     height:50px;
     line-height:50px;
     text-indent: 20px;
-    border-left:solid 4px #72ca59;
     font-size:18px;
+}
+
+.True{
+    border-left:solid 4px #72ca59;
+}
+
+.False{
+    border-left:solid 4px red;
 }
 
 .todo_item{
@@ -78,8 +85,6 @@ h1{
 }
 
 .todo_action > *{
-    width:25px;
-    height:25px;
     line-height:27px;
     text-align: center;
     color:white;
@@ -89,9 +94,24 @@ h1{
     border:none;
 }
 
+.button{
+    line-height: 25px;
+    text-align: center;
+    color:white;
+    cursor: pointer;
+    width:25px;
+    height:25px;
+    border-radius:50%;
+    position:absolute;
+}
+
 .validation{
     margin-right:15px;
     background: #96E083;
+    top:50%;
+    left:90%;
+    transform: translate(-75%,-50%);
+    
 }
 
 .validation:hover{
@@ -100,6 +120,9 @@ h1{
 
 .delete{
     background: #FF5A5A;
+    top:50%;
+    left:97%;
+    transform: translate(-97%,-50%);
 }
 
 .delete:hover{
@@ -139,5 +162,29 @@ h1{
 
  #add:hover{
      background: #50AE37;
+ }
+
+ .notif{
+     position:fixed;
+     left:50%;
+     top:98%;
+     transform: translate(-50%,-98%);
+     width:400px;
+     height:40px;
+     line-height:40px;
+     text-align: center;
+     color:white;
+     background:#72ca59;
+     opacity:0;
+     transition: opacity .5s,top .5s;
+     border-radius:5px;
+     font-size:20px;
+ }
+
+ .show{
+     opacity:1;
+     left:50%;
+     top:95%;
+     transform: translate(-50%,-95%);
  }
 

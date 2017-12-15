@@ -18,20 +18,16 @@
     {% if todo_list %}
     {% for todo in todo_list %}
         <div class="todo_item">
-            <li class="todo_text">{{ todo.todo_text }}<span class="day_left">{{ todo.day_left }} day</span></li>
-            <form method="post" class="todo_action">
-                {% csrf_token %}
-                <input type="hidden" name="text" value="{{ todo.todo_text }}"></input>
-                <input type="submit" class="validation" value="&#x2714;"></input>
-                <input type="submit" class="delete" value="&#10006;"></input>
-            </form>
+            <li class="todo_text {{ todo.validate }}">{{ todo.todo_text }}</li>
+            <div class="button validation" >&#x2714;</div>
+            <div class="button delete" >&#10006;</div>
         </div>
     {% endfor %}
     {% endif %}
     </ul>
 </div>
 
-
+<p class="notif" ></p>
 
 
 <p>{{ error }}</p>

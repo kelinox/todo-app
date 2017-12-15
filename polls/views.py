@@ -41,14 +41,23 @@ def index(request):
     return render(request,'polls/index.html',context)
 
 def delete(request):
-    remove = ""
+    remove = "Error while removing"
     if request.method == 'POST':
         remove="deleted"
         t = Todo.objects.get(todo_text=request.POST['text'])
         t.delete()
+        remove = "Successfuly removed the task"
     return HttpResponse(json.dumps({
-                        'remove': remove
+                        'message': remove
                     }))
     
+def validate(request):
+    if request.method == 'POST':
+        t = Todo.objects.get(todo_text=request.POST['text'])
+        t.validate = True
+        t.save()
+    return HttpResponse(json.dumps({
+                        'message':'Successfuly validate the task'
+                    }))
 
 # Create your views here.
