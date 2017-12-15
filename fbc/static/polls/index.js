@@ -32,8 +32,8 @@ $(document).ready(function(){
     $('#form').submit(function(e){
         $.post('/', $(this).serialize(), function(data){ 
             data = JSON.parse(data);
-            console.log(data.error);
-            if(data.error.length < 1){
+            var notif = $('body').find('.notif');
+            if(data.error == "no"){
                 var inputElem = document.createElement('input');
                 inputElem.type = 'hidden';
                 inputElem.name = 'csrfmiddlewaretoken';
@@ -46,7 +46,15 @@ $(document).ready(function(){
                 '</div>');
                 var elem = $('.todo_action').last().append(inputElem);
                 $('#todo_list').sortable();
+                notif.text('Successfuly added the task');
+                notif.addClass('green');
             }
+            else{
+                notif.text('An error occured');
+                notif.addClass('red');
+            }
+            notif.addClass('show');
+            setTimeout(function(){$('body').find('.notif').removeClass('show');},3000);
         });
         e.preventDefault();
     });
@@ -69,7 +77,8 @@ $(document).ready(function(){
                 elem.parent().remove();
                 var notif = $('body').find('.notif');
                 notif.text(data.message);
-                notif.addClass('show');
+                notif.removeClass('red');
+                notif.addClass('show').addClass('green');
                 setTimeout(function(){$('body').find('.notif').removeClass('show');},3000);
             },
             error: function(data){
@@ -96,7 +105,8 @@ $(document).ready(function(){
                 elem.parent().find('li').removeClass('False').addClass('True');
                 var notif = $('body').find('.notif');
                 notif.text(data.message);
-                notif.addClass('show');
+                notif.removeClass('red');
+                notif.addClass('show').addClass('green');
                 setTimeout(function(){$('body').find('.notif').removeClass('show');},3000);
             },
             error: function(data){

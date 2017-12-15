@@ -23,9 +23,11 @@ def index(request):
             try:
                 todo = Todo.objects.create(todo_text=todo_name,day_left=day_left)
                 todo.save()
+                error = "no"
             except IntegrityError as e:
-                error = "already in the database"
-
+                error = "yes"
+        else:
+            error = "yes"
 
         return HttpResponse(json.dumps({
                             'todo_name': todo_name,

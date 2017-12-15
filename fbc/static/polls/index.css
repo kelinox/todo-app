@@ -174,7 +174,6 @@ h1{
      line-height:40px;
      text-align: center;
      color:white;
-     background:#72ca59;
      opacity:0;
      transition: opacity .5s,top .5s;
      border-radius:5px;
@@ -188,3 +187,10 @@ h1{
      transform: translate(-50%,-95%);
  }
 
+ .green{
+    background:#72ca59;
+ }
+
+ .red{
+     background: #FF5A5A;
+ }
