@@ -1,4 +1,5 @@
 $(document).ready(function(){
+    $('#todo_list').sortable();
 
     function getCookie(name) {
         var cookieValue = null;
@@ -47,7 +48,7 @@ $(document).ready(function(){
                 var elem = $('.todo_action').last().append(inputElem);
                 $('#todo_list').sortable();
                 notif.text('Successfuly added the task');
-                notif.addClass('green');
+                notif.removeClass('red').addClass('green');
             }
             else{
                 notif.text('An error occured');
@@ -77,7 +78,7 @@ $(document).ready(function(){
                 elem.parent().remove();
                 var notif = $('body').find('.notif');
                 notif.text(data.message);
-                notif.removeClass('red');
+                notif.removeClass('red').removeClass('show');
                 notif.addClass('show').addClass('green');
                 setTimeout(function(){$('body').find('.notif').removeClass('show');},3000);
             },
@@ -89,30 +90,38 @@ $(document).ready(function(){
 
     $('#todo_list').on('click','.validation',(function(){
         var elem = $(this);
-        $.ajax({
-            beforeSend: function(xhr, settings) {
-                if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        var notif = $('body').find('.notif');
+        if(elem.parent().find('li').hasClass('True')){            
+            notif.text("Task already validate");
+            notif.removeClass('green');
+            notif.addClass('show').addClass('red');
+            setTimeout(function(){$('body').find('.notif').removeClass('show');},3000);
+        }else{
+            $.ajax({
+                beforeSend: function(xhr, settings) {
+                    if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                        xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                    }
+                },
+                method: 'POST',
+                dataType:'json',
+                data:{
+                    text: $(this).parent().find('li').text()
+                },
+                url:'validate',
+                success: function(data){
+                    elem.parent().find('li').removeClass('False').addClass('True');
+                    notif.text(data.message);
+                    notif.removeClass('red');
+                    notif.addClass('show').addClass('green');
+                    setTimeout(function(){$('body').find('.notif').removeClass('show');},3000);
+                },
+                error: function(data){
+                    alert('fail');
                 }
-            },
-            method: 'POST',
-            dataType:'json',
-            data:{
-                text: $(this).parent().find('li').text()
-            },
-            url:'validate',
-            success: function(data){
-                elem.parent().find('li').removeClass('False').addClass('True');
-                var notif = $('body').find('.notif');
-                notif.text(data.message);
-                notif.removeClass('red');
-                notif.addClass('show').addClass('green');
-                setTimeout(function(){$('body').find('.notif').removeClass('show');},3000);
-            },
-            error: function(data){
-                alert('fail');
-            }
-        })
+            })
+        }
+
     }))
 
 })

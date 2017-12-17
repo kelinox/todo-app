@@ -19,9 +19,8 @@ def index(request):
         error = ""
         if form.is_valid():
             todo_name = form.cleaned_data['todo_name']
-            day_left = form.cleaned_data['day_left']
             try:
-                todo = Todo.objects.create(todo_text=todo_name,day_left=day_left)
+                todo = Todo.objects.create(todo_text=todo_name)
                 todo.save()
                 error = "no"
             except IntegrityError as e:
